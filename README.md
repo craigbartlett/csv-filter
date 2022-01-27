@@ -27,3 +27,38 @@ Ken,Thompson,19430204
 Rob,Pike,19560101
 Robert,Griesemer,19640609
 ```
+
+## How-To
+
+### Requirements 
+
+- [.NET Core 3.1](https://dotnet.microsoft.com/en-us/download/dotnet/3.1)
+
+### Build
+
+```shell script
+dotnet publish -c RELEASE --self-contained -r linux-x64 --output ./publish
+```
+
+### Running
+
+```shell script
+./publish/csv-filter parse --help
+
+Usage: csv-filter parse [options]
+
+Options:
+  --query <column=value>  key/value pairs to filter with
+  --file <value>          Absolute path to csv file
+  -? | -h | --help        Show help information
+
+
+./publish/csv-filter parse --file /tmp/example.csv --query "dob=19640609"
+./publish/csv-filter parse --file /tmp/example.csv --query "dob=19640609 last_name=Tables"
+```
+
+## Assumptions
+
+- the csv data will not contain quotes or spaces 
+- the first line contains header information
+- that the csv could contain additional columns of data that could still be filtered upon 

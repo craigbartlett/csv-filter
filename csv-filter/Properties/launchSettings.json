@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "csv-filter": {
+      "commandName": "Project",
+      "commandLineArgs": "parse --file C:\\Users\\cbartlett\\Workspaces\\dotnet\\csv-filter\\example2.csv --query \"note=abc\""
+    }
+  }
+}
