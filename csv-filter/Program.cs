@@ -44,11 +44,11 @@ namespace csvFilter
 
             List<Filter> filters = BuildFilters(ReadHeader(filePath), query);
 
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, FileOptions.SequentialScan))
-            using (var streamReader = new StreamReader(fs, Encoding.UTF8, true, BufferSize))
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read, BufferSize, FileOptions.SequentialScan))
+            using (var sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize))
             {
                 string line;
-                while ((line = streamReader.ReadLine()) != null)
+                while ((line = sr.ReadLine()) != null)
                 {
                     string[] lineParts = line.Split(",", StringSplitOptions.RemoveEmptyEntries);
                     bool flag = true;
@@ -83,10 +83,10 @@ namespace csvFilter
         /// </summary>
         private static Dictionary<string, int> ReadHeader(string filePath)
         {
-            using (FileStream fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
-            using (var streamReader = new StreamReader(fs, Encoding.UTF8, true, BufferSize))
+            using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.Read))
+            using (var sr = new StreamReader(fs, Encoding.UTF8, true, BufferSize))
             {
-                string line = streamReader.ReadLine();
+                string line = sr.ReadLine();
                 string[] lineParts = line.Split(",", StringSplitOptions.RemoveEmptyEntries);
 
                 Dictionary<string, int> header = new Dictionary<string, int>();
